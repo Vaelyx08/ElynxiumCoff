@@ -18,21 +18,44 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <link rel="stylesheet" href="resurse/style.css">
+	<link rel="stylesheet" href="resurse/sass.css">
 	<title> Elynxium - Cafenea & Relaxare</title>
 </head>
 <body>
+	<div id="watermark-print">
+		Brișiț <br>
+		Mario-Vlad
+	</div>
 	<header>
 		<h1><i class="fa-solid fa-mug-hot"></i> Elynxium </h1>
+
 		<nav>
-			<ul>
-				<li><a href="index.html">Acasă</a>
-					<ul>
-						<li><a href="#despre">Despre Noi</a> </li>
+			<button id="burger-btn" class="burger-buton" aria-label="Deschide meniul">
+				<i class="fa-solid fa-bars"></i> Meniu
+			</button>
+
+			<ul id="meniu-principal" class="meniu-principal">
+				<li>
+					<a href="index.html"><i class="fa-solid fa-house"></i> <span class="text-meniu">Acasă</span></a>
+					<ul class="submeniu">
+						<li><a href="#zona1">Despre Noi</a></li>
+						<li><a href="#zona3">Evenimente & Promoții</a></li>
+						<li><a href="#zona2">Extras Din Meniu</a></li>
 					</ul>
 				</li>
-				<li><a href="meniu.html">Meniu</a></li> 
-                <li><a href="galerie.html">Galerie</a></li>
-                <li><a href="contact.html">Contact</a></li>
+				<li>
+					<a href="resurse/meniu-elynxium.pdf" download="Oferta_Speciala_2026.pdf"><i class="fa-solid fa-mug-saucer"></i> <span class="text-meniu">Meniu</span></a>
+				</li>
+				<li>
+					<a href="#"><i class="fa-solid fa-images"></i> <span class="text-meniu">Galerii</span></a>
+					<ul class="submeniu">
+						<li><a href="galerie-statica.html">Galerie statică</a></li>
+						<li><a href="galerie-dinamica.html">Galerie dinamică</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="#contact"><i class="fa-solid fa-envelope"></i> <span class="text-meniu">Contact</span></a>
+				</li>
 			</ul>
 		</nav>
 		
@@ -225,7 +248,7 @@
 	</main>
 	
 	<footer>
-        <section>
+        <section id="contact">
             <h3>Contact Elynxium</h3>
             <address>
                 <strong>Locație:</strong> <br>
@@ -246,7 +269,20 @@
         </a>
 
         <p><small>© Elynxium. Pagină creată la: <time datetime="2026-03-08">8 Martie 2026</time>.</small></p>
+		<p id="banner-scolar">Acesta este un proiect școlar!</p>
     </footer>
 
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const burgerBtn = document.getElementById("burger-btn");
+        const meniuPrincipal = document.getElementById("meniu-principal");
+
+        burgerBtn.addEventListener("click", () => {
+            // Adăugăm sau scoatem clasa "deschis" la fiecare click
+            meniuPrincipal.classList.toggle("deschis");
+        });
+    });
+</script>
 </body>
 </html>

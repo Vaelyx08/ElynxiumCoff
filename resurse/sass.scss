@@ -1,0 +1,363 @@
+$viteza-tranzitie: 0.4s;
+$padding-meniu: 15px 20px;
+
+// @extend - Placeholder pentru blocuri de cod similare
+%stil-comun-link {
+    display: block;
+    padding: $padding-meniu;
+    color: var(--culoare-text);
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color $viteza-tranzitie ease, color $viteza-tranzitie ease;
+}
+
+nav {
+    background-color: var(--culoare-secundara);
+    border-radius: 8px;
+    
+    // nesting
+    .meniu-principal {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        > li {
+            position: relative;
+            flex: 1;
+            text-align: center;
+
+            > a {
+                @extend %stil-comun-link;
+                border-radius: 8px;
+                position: relative;
+                
+                text-shadow: 0 -30px 5px rgba(0, 0, 0, 0);
+                transition: all $viteza-tranzitie ease;
+
+                &:hover {
+                    background-color: var(--culoare-principala);
+                    color: var(--culoare-secundara);
+                    text-shadow: 0 0 2px var(--culoare-text);
+                }
+            }
+
+            .submeniu {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                min-width: 220px;
+                background-color: var(--culoare-secundara);
+                border: 1px solid var(--culoare-principala);
+                border-top: none;
+                border-radius: 0 0 8px 8px;
+                text-align: left;
+                
+                transform: scaleY(0);
+                transform-origin: top;
+                transition: transform $viteza-tranzitie cubic-bezier(0.4, 0, 0.2, 1);
+                
+                visibility: hidden; 
+
+                li {
+                    a {
+                        @extend %stil-comun-link;
+                        
+                        background-image: linear-gradient(var(--culoare-principala), var(--culoare-principala));
+                        background-position: bottom left;
+                        background-repeat: no-repeat;
+                        background-size: 0% 3px; // initial nu are latime
+                        transition: background-size 0.3s ease, background-color 0.3s ease;
+
+                        &:hover {
+                            background-color: var(--culoare-accent1);
+                            background-size: 100% 3px;
+                        }
+                    }
+                }
+            }
+
+            &:hover .submeniu {
+                transform: scaleY(1);
+                visibility: visible;
+            }
+        }
+    }
+
+    @for $i from 1 through 10 {
+        .meniu-principal > li:nth-child(#{$i}) {
+            z-index: 20 - $i;
+        }
+    }
+}
+
+// Butonul de burger e ascuns pe desktop
+.burger-buton {
+    display: none; 
+    cursor: pointer;
+    background-color: var(--culoare-secundara);
+    color: var(--culoare-principala);
+    padding: 15px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-radius: 8px;
+    text-align: center;
+}
+
+@keyframes decomprimare-optiuni {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes decomprimare-litere {
+    0% {
+        letter-spacing: -15px;
+        opacity: 0;
+    }
+    100% {
+        letter-spacing: normal;
+        opacity: 1;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    nav {
+        .meniu-principal > li > a {
+            .text-meniu {
+                display: none; 
+            }
+            i {
+                font-size: 1.5rem;
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    nav {
+        .burger-buton {
+            display: block; 
+            border: none;
+            width: 100%;
+        }
+
+        .meniu-principal {
+            display: none;
+            flex-direction: column;
+            background-color: var(--culoare-secundara);
+            border-radius: 8px;
+            margin-top: 10px;
+
+            &.deschis {
+                display: flex;
+                
+                > li > a {
+                    animation: decomprimare-litere 0.5s ease-out forwards;
+                }
+            }
+
+            > li {
+                width: 100%;
+                text-align: center;
+
+                &:first-child > a .text-meniu {
+                    display: none !important; 
+                }
+
+                > a {
+                    text-shadow: none !important; 
+                    box-shadow: none !important;
+                    transition: background-color 0.4s ease !important;
+                    
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 10px;
+
+                    &:hover {
+                        background-color: var(--culoare-principala);
+                        color: var(--culoare-text);
+                    }
+                    
+                    i.fa-house {
+                        font-size: 1.5rem;
+                    }
+                }
+
+                .submeniu {
+                    position: static;
+                    width: 100%;
+                    border: none;
+                    border-left: 3px solid var(--culoare-principala);
+                    border-radius: 0;
+                    background-color: rgba(0, 0, 0, 0.15); 
+                    max-height: 0;
+                    overflow: hidden;
+                    opacity: 0;
+                    transition: max-height 0.4s ease-in-out, opacity 0.3s ease-in-out;
+                }
+
+                &:hover .submeniu,
+                &:focus-within .submeniu {
+                    max-height: 300px; 
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
+
+#watermark-print {
+    display: none;
+}
+
+@media print {
+    a {
+        text-decoration: none !important;
+        color: black !important;
+    }
+@page :left {
+    margin-left: 2cm;
+    margin-right: 1cm;
+}
+@page :right {
+    margin-left: 1cm;
+    margin-right: 2cm;
+}
+
+    body {
+        background-color: white !important;
+        color: black !important;
+        margin: 0 !important;
+    }
+
+    header, footer, #grid-principal > section {
+        background: none !important;
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+#watermark-print {
+    position: fixed;
+    top: 45%;
+    left: 20%;
+    width: 60%;
+    height: 10%;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+    font-size: 3rem;
+    font-weight: bold;
+    z-index: -1;
+    
+    color: rgba(0, 0, 0, 0.3) !important; 
+}
+
+    img, video, iframe, object, figure, figcaption, picture, 
+    #link-top, .burger-buton, #video-sectiune, .container-taburi, #burger-hack {
+        display: none !important;
+    }
+
+    #banner-scolar {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 50%;
+        border: 4px double black !important;
+        padding: 10px;
+        text-align: center;
+        font-weight: normal;
+        box-sizing: border-box;
+        margin: 0;
+    }
+
+    header h1 {
+        text-align: center;
+        margin-top: 60px;
+        margin-bottom: 30px;
+    }
+
+    nav {
+        display: block !important;
+        break-after: page; 
+        page-break-after: always; 
+
+        .meniu-principal {
+            display: block !important;
+            margin: 0 !important;
+            padding-left: 40px !important;
+            list-style-type: disc !important;
+
+            li {
+                display: list-item !important;
+                text-align: left !important;
+                margin-bottom: 5px !important;
+                width: auto !important;
+                
+                a {
+                    display: inline !important;
+                    padding: 0 !important;
+                    background: none !important;
+                    border: none !important;
+                    color: black !important;
+                    text-decoration: none !important;
+                    font-weight: normal !important;
+                }
+                
+                i { display: none !important; }
+
+                &:first-child > a .text-meniu {
+                    display: inline !important;
+                }
+            }
+
+            .submeniu {
+                display: block !important;
+                position: static !important;
+                visibility: visible !important;
+                transform: none !important;
+                border: none !important;
+                list-style-type: circle !important;
+                padding-left: 30px !important;
+                margin-top: 5px !important;
+            }
+        }
+    }
+
+    #grid-principal {
+        display: block !important;
+        
+        > section {
+            display: block !important;
+            margin-bottom: 20px !important;
+            border: 1px solid black !important; 
+            padding: 15px !important;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+    }
+
+    footer {
+        display: block !important;
+        break-before: page;
+        page-break-before: always;
+    }
+}
