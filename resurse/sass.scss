@@ -72,7 +72,7 @@ nav {
                         background-image: linear-gradient(var(--culoare-principala), var(--culoare-principala));
                         background-position: bottom left;
                         background-repeat: no-repeat;
-                        background-size: 0% 3px; // Initial nu are latime
+                        background-size: 0% 3px; // initial nu are latime
                         transition: background-size 0.3s ease, background-color 0.3s ease;
 
                         &:hover {
@@ -97,12 +97,6 @@ nav {
     }
 }
 
-
-
-.ascuns {
-    display: none;
-}
-
 // Butonul de burger e ascuns pe desktop
 .burger-buton {
     display: none; 
@@ -116,9 +110,20 @@ nav {
     text-align: center;
 }
 
+@keyframes decomprimare-optiuni {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
 @keyframes decomprimare-litere {
     0% {
-        letter-spacing: -10px;
+        letter-spacing: -15px;
         opacity: 0;
     }
     100% {
@@ -157,21 +162,37 @@ nav {
 
             &.deschis {
                 display: flex;
-                li a {
-                    animation: decomprimare-litere 0.6s ease-out forwards;
+                
+                > li > a {
+                    animation: decomprimare-litere 0.5s ease-out forwards;
                 }
             }
 
             > li {
                 width: 100%;
-                text-align: left;
+                text-align: center;
+
+                &:first-child > a .text-meniu {
+                    display: none !important; 
+                }
 
                 > a {
                     text-shadow: none !important; 
+                    box-shadow: none !important;
+                    transition: background-color 0.4s ease !important;
+                    
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 10px;
 
                     &:hover {
                         background-color: var(--culoare-principala);
                         color: var(--culoare-text);
+                    }
+                    
+                    i.fa-house {
+                        font-size: 1.5rem;
                     }
                 }
 
@@ -181,11 +202,17 @@ nav {
                     border: none;
                     border-left: 3px solid var(--culoare-principala);
                     border-radius: 0;
-                    display: none; 
+                    background-color: rgba(0, 0, 0, 0.15); 
+                    max-height: 0;
+                    overflow: hidden;
+                    opacity: 0;
+                    transition: max-height 0.4s ease-in-out, opacity 0.3s ease-in-out;
                 }
 
-                &:hover .submeniu {
-                    display: block;
+                &:hover .submeniu,
+                &:focus-within .submeniu {
+                    max-height: 300px; 
+                    opacity: 1;
                 }
             }
         }
@@ -197,6 +224,10 @@ nav {
 }
 
 @media print {
+    a {
+        text-decoration: none !important;
+        color: black !important;
+    }
 @page :left {
     margin-left: 2cm;
     margin-right: 1cm;
@@ -292,6 +323,10 @@ nav {
                 }
                 
                 i { display: none !important; }
+
+                &:first-child > a .text-meniu {
+                    display: inline !important;
+                }
             }
 
             .submeniu {

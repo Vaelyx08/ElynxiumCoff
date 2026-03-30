@@ -100,10 +100,6 @@ nav .meniu-principal > li:nth-child(10) {
   z-index: 10;
 }
 
-.ascuns {
-  display: none;
-}
-
 .burger-buton {
   display: none;
   cursor: pointer;
@@ -116,9 +112,19 @@ nav .meniu-principal > li:nth-child(10) {
   text-align: center;
 }
 
+@keyframes decomprimare-optiuni {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
 @keyframes decomprimare-litere {
   0% {
-    letter-spacing: -10px;
+    letter-spacing: -15px;
     opacity: 0;
   }
   100% {
@@ -150,19 +156,31 @@ nav .meniu-principal > li:nth-child(10) {
   nav .meniu-principal.deschis {
     display: flex;
   }
-  nav .meniu-principal.deschis li a {
-    animation: decomprimare-litere 0.6s ease-out forwards;
+  nav .meniu-principal.deschis > li > a {
+    animation: decomprimare-litere 0.5s ease-out forwards;
   }
   nav .meniu-principal > li {
     width: 100%;
-    text-align: left;
+    text-align: center;
+  }
+  nav .meniu-principal > li:first-child > a .text-meniu {
+    display: none !important;
   }
   nav .meniu-principal > li > a {
     text-shadow: none !important;
+    box-shadow: none !important;
+    transition: background-color 0.4s ease !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
   }
   nav .meniu-principal > li > a:hover {
     background-color: var(--culoare-principala);
     color: var(--culoare-text);
+  }
+  nav .meniu-principal > li > a i.fa-house {
+    font-size: 1.5rem;
   }
   nav .meniu-principal > li .submeniu {
     position: static;
@@ -170,10 +188,15 @@ nav .meniu-principal > li:nth-child(10) {
     border: none;
     border-left: 3px solid var(--culoare-principala);
     border-radius: 0;
-    display: none;
+    background-color: rgba(0, 0, 0, 0.15);
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.4s ease-in-out, opacity 0.3s ease-in-out;
   }
-  nav .meniu-principal > li:hover .submeniu {
-    display: block;
+  nav .meniu-principal > li:hover .submeniu, nav .meniu-principal > li:focus-within .submeniu {
+    max-height: 300px;
+    opacity: 1;
   }
 }
 #watermark-print {
@@ -181,6 +204,10 @@ nav .meniu-principal > li:nth-child(10) {
 }
 
 @media print {
+  a {
+    text-decoration: none !important;
+    color: black !important;
+  }
   @page :left {
     margin-left: 2cm;
     margin-right: 1cm;
@@ -267,6 +294,9 @@ nav .meniu-principal > li:nth-child(10) {
   }
   nav .meniu-principal li i {
     display: none !important;
+  }
+  nav .meniu-principal li:first-child > a .text-meniu {
+    display: inline !important;
   }
   nav .meniu-principal .submeniu {
     display: block !important;

@@ -127,9 +127,6 @@ img, video, iframe, object {
     grid-template-columns: 1fr;
     grid-template-areas: "z1" "z2" "z8" "z3" "z4" "z5" "z6" "z7";
   }
-  * {
-    animation: none !important;
-  }
 }
 @media (min-width: 769px) and (max-width: 1024px) {
   body {
@@ -150,8 +147,8 @@ img, video, iframe, object {
     font-size: 16px;
   }
   #grid-principal {
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-areas: "z1 z1 z1" "z2 z2 z8" "z5 z6 z8" "z4 z3 z7";
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-areas: "z1 z1 z1 z1 z1" "z2 z2 z2 z8 z8" "z5 z6 z6 z8 z8" "z4 z4 z3 z3 z7";
   }
 }
 #zona1 {
@@ -180,6 +177,7 @@ img, video, iframe, object {
 /* stilizare-taburi */
 .container-taburi {
   display: flex;
+  justify-content: center;
   gap: 10px;
   margin-bottom: 0;
 }
@@ -229,17 +227,22 @@ table caption {
 }
 
 th, td {
-  border: 1px solid var(--culoare-text);
+  border-left: 1px solid var(--culoare-text);
+  border-right: 1px solid var(--culoare-text);
   padding: 10px;
   text-align: center;
 }
 
 tbody tr:nth-child(odd) td {
-  border-top: 1px solid var(--culoare-principala);
+  border-top: 1px solid var(--culoare-accent2);
 }
 
 tbody tr:nth-child(even) td {
-  border-top: 1px solid var(--culoare-accent2);
+  border-top: 1px solid var(--culoare-principala);
+}
+
+tfoot td {
+  border-top: 1px solid var(--culoare-text);
 }
 
 tbody tr {
