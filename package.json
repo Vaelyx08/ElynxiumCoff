@@ -1,0 +1,37 @@
+{
+  "name": "elynxiumcoff",
+  "version": "1.0.0",
+  "description": "Proiect Scolar",
+  "keywords": [
+    "cafenea",
+    "coffee",
+    "shop",
+    "latte",
+    "art",
+    "atmosfera",
+    "relaxanta",
+    "patiserie",
+    "Elynxium",
+    "home",
+    "barista"
+  ],
+  "homepage": "https://github.com/Vaelyx08/ElynxiumCoff#readme",
+  "bugs": {
+    "url": "https://github.com/Vaelyx08/ElynxiumCoff/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vaelyx08/ElynxiumCoff.git"
+  },
+  "license": "ISC",
+  "author": "Brisit Mario-Vlad",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "dependencies": {
+    "ejs": "^5.0.1",
+    "express": "^5.2.1"
+  }
+}

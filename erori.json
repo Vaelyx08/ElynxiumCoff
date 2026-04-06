@@ -1,0 +1,31 @@
+{
+  "cale_baza": "/imagini/erori",
+  "eroare_default": {
+    "titlu": "Eroare Generală",
+    "text": "A apărut o eroare neașteptată pe server. Ne cerem scuze pentru inconvenient!",
+    "imagine": "default.png"
+  },
+  "info_erori": [
+    {
+      "identificator": 400,
+      "status": true,
+      "titlu": "400 - Bad Request",
+      "text": "Cerere invalidă! Fișierele șablon ale site-ului nu pot fi accesate direct.",
+      "imagine": "400.png"
+    },
+    {
+      "identificator": 404,
+      "status": true,
+      "titlu": "404 - Pagina nu a fost găsită",
+      "text": "Ne pare rău, dar pagina pe care o cauți nu există. Poate dorești să te întorci la meniu pentru o cafea?",
+      "imagine": "404.png"
+    },
+    {
+      "identificator": 403,
+      "status": true,
+      "titlu": "403 - Acces Interzis",
+      "text": "Nu ai permisiunea necesară pentru a accesa această resursă.",
+      "imagine": "403.png"
+    }
+  ]
+}

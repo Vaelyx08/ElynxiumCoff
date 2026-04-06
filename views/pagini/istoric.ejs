@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <%- include('../fragmente/head.ejs') %>
+    <title>Istoric - Elynxium</title>
+</head>
+<body>
+    <%- include('../fragmente/header.ejs') %>
+
+    <main style="max-width: 800px; margin: 40px auto; padding: 20px;">
+        <h1 style="text-align: center; color: black;">Povestea Elynxium</h1>
+        
+        <section style="line-height: 1.8; font-size: 1.1rem;">
+            <p>
+                Totul a început dintr-o pasiune simplă, dar puternică, pentru o cafea perfectă și o dorință arzătoare de a oferi o oază de liniște în inima aglomerată a Bucureștiului. Elynxium nu a fost conceput doar ca un simplu <em>coffee shop</em>, ci ca o a doua casă pentru iubitorii de cafea și relaxare.
+            </p>
+            <p>
+                Primii noștri pași au fost mici, cu un singur aparat espresso și mult entuziasm pentru <strong>latte art</strong>. În scurt timp, mirosul de cafea proaspăt prăjită și produsele de patiserie aburinde au transformat micul nostru colț într-un loc de întâlnire pentru prieteni, studenți și profesioniști deopotrivă.
+            </p>
+            <p>
+                Astăzi, Elynxium se mândrește cu cea mai bună atmosferă, baristas pasionați și un mediu în care fiecare ceașcă de cafea își spune propria poveste.
+            </p>
+        </section>
+        <section style="text-align: center; margin: 40px 0;">
+            <h2>Cum preparăm cafeaua la Elynxium</h2>
+            
+            <video class="video-prezentare" controls preload="none" poster="/imagini/poster-cafea.jpg">
+                
+                <source src="/video/prezentare.mp4" type="video/mp4">
+                <source src="/video/prezentare.webm" type="video/webm">
+                
+                <track src="/vtt/ro.vtt" kind="subtitles" srclang="ro" label="Română" default>
+                <track src="/vtt/en.vtt" kind="subtitles" srclang="en" label="English">
+                
+                <p>Browserul tău nu suportă elementul video.</p>
+            </video>
+        </section>
+
+    </main>
+
+    <%- include('../fragmente/footer.ejs') %>
+</body>
+</html>
