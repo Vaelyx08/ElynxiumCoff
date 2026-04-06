@@ -1,4 +1,4 @@
 # ElynxiumCoff
 Repo Proiect TW - 2026
 
-Actualizat: 17.03.2026 - Etapa 2
+Actualizat: 06.04.2026 - Etapa 4
