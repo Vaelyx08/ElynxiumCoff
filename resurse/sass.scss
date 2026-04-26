@@ -164,7 +164,10 @@ nav {
 
             > li {
                 width: 100%;
-                text-align: left;
+                text-align: left; // center daca il vrem centrat, mie chiar imi place mai mult intr-o parte
+                &:first-child .text-meniu {
+                    display: none; // doar icon pt "Acasa"
+                }
 
                 > a {
                     text-shadow: none !important; 
@@ -197,6 +200,11 @@ nav {
 }
 
 @media print {
+a {
+        color: black !important;
+        text-decoration: none !important;
+        background: none !important;
+    }
 @page :left {
     margin-left: 2cm;
     margin-right: 1cm;

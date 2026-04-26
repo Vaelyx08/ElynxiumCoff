@@ -5,10 +5,7 @@
     <%- include('../fragmente/head.ejs') %>
 </head>
 <body>
-	<div id="watermark-print">
-		Brișiț <br>
-		Mario-Vlad
-	</div>
+
 	<header>
 		<%- include('../fragmente/header.ejs') %>
     </header>
@@ -194,20 +191,12 @@
         </section>
 
 	</main>
-	
+
+    
+    </section> </main> <%- include('../fragmente/galerie.ejs') %>
     <%- include('../fragmente/footer.ejs') %>
 
 
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const burgerBtn = document.getElementById("burger-btn");
-        const meniuPrincipal = document.getElementById("meniu-principal");
 
-        burgerBtn.addEventListener("click", () => {
-            // Adăugăm sau scoatem clasa "deschis" la fiecare click
-            meniuPrincipal.classList.toggle("deschis");
-        });
-    });
-</script>
 </body>
 </html>

@@ -372,3 +372,106 @@ main a:hover {
 a:active {
     outline: 1px solid black;
 }
+
+/* --- SETĂRI GENERALE GALERIE --- */
+#galerie-statica-sectiune {
+    width: 100%;
+    margin: 40px 0;
+    /* Initializează numărătorul pentru cifre romane */
+    counter-reset: index-galerie; 
+}
+
+.galerie-grid {
+    display: grid;
+    gap: 20px;
+    width: 100%;
+}
+
+.galerie-grid figure {
+    margin: 0;
+    padding: 0;
+    /* overflow: hidden; /* Pentru ca imaginea să nu iasă din chenar când facem scale */
+    position: relative;
+    border-radius: 8px;
+}
+
+.galerie-grid img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    border: 0px solid var(--culoare-principala);
+    
+    /* Tranziția cerută de 1 secundă și o cincime (1.2s) */
+    transition: transform 1.2s ease, border-width 1.2s ease;
+}
+
+/* EFECTUL DE HOVER */
+.galerie-grid figure:hover img {
+    transform: scale(1.25) rotate(-10deg);
+    border-width: 4px;
+}
+
+/* INDEXARE CU CIFRE ROMANE (CSS Counter) */
+.galerie-grid figcaption::before {
+    counter-increment: index-galerie;
+    content: counter(index-galerie, upper-roman) ") ";
+    font-weight: bold;
+    color: var(--culoare-principala);
+}
+
+.galerie-grid figcaption {
+    margin-top: 8px;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.atribuire {
+    color: gray;
+    font-size: 0.8em;
+}
+
+/* --- RESPONSIVITATE GRID --- */
+
+/* Ecran Mare (Desktop) - Structura 3x4 cu spații goale */
+@media (min-width: 1025px) {
+    .galerie-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    /* Acest truc este esențial pentru forma galeriei! 
+       Imaginile 1, 2, 3 stau normal pe rândul 1.
+       Imaginea 4 stă normal pe col 1, rândul 2.
+       Imaginea 5 o forțăm să se ducă pe coloana 3, lăsând coloana 2 goală!
+    */
+    .galerie-grid figure:nth-child(5) {
+        grid-column: 3;
+    }
+
+    /* Imaginea 6 curge automat pe rândul 3, col 1.
+       Imaginea 7 o forțăm pe coloana 3, lăsând iar coloana 2 goală. */
+    .galerie-grid figure:nth-child(7) {
+        grid-column: 3;
+    }
+    
+    /* Imaginile 8, 9, 10 vor curge normal pe ultimul rând, umplând toate cele 3 coloane. */
+}
+
+/* Ecran Mediu (Tablete) - 2 coloane pline */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .galerie-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Ecran Mic (Telefoane) - 1 coloană (se va întâmpla default fără o regulă media, 
+   dar o putem specifica dacă nu ai setat deja) */
+@media (max-width: 768px) {
+    .galerie-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.galerie-grid figure:hover {
+    z-index: 10; /* O aduce în prim-plan */
+}

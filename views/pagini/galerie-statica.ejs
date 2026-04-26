@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <%- include('../fragmente/head.ejs') %>
+    <title><%= locals.titlu || 'Galerie Statică - Elynxium' %></title>
+</head>
+<body>
+    <%- include('../fragmente/header.ejs') %>
+
+    <main style="max-width: 1200px; margin: 40px auto; padding: 20px;">
+        
+        <h1 style="text-align: center; margin-bottom: 20px;">Momente la Elynxium</h1>
+        <p style="text-align: center; margin-bottom: 40px;">
+            Descoperă atmosfera noastră, o selecție de imagini care se schimbă în funcție de momentul zilei.
+        </p>
+
+        <%- include('../fragmente/galerie.ejs') %>
+        </main>
+
+    <%- include('../fragmente/footer.ejs') %>
+</body>
+</html>

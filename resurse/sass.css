@@ -157,6 +157,9 @@ nav .meniu-principal > li:nth-child(10) {
     width: 100%;
     text-align: left;
   }
+  nav .meniu-principal > li:first-child .text-meniu {
+    display: none;
+  }
   nav .meniu-principal > li > a {
     text-shadow: none !important;
   }
@@ -181,6 +184,11 @@ nav .meniu-principal > li:nth-child(10) {
 }
 
 @media print {
+  a {
+    color: black !important;
+    text-decoration: none !important;
+    background: none !important;
+  }
   @page :left {
     margin-left: 2cm;
     margin-right: 1cm;

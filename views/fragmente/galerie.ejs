@@ -1,0 +1,24 @@
+<section id="galerie-statica-sectiune">
+    <h2>Galeria Elynxium</h2>
+    <div class="galerie-grid">
+        <% if (locals.imagini && locals.imagini.length > 0) { %>
+            <% imagini.forEach(function(img) { %>
+                <figure>
+                    <picture>
+                        <source media="(max-width: 600px)" srcset="<%= img.cale_web_mic %>">
+                        <source media="(max-width: 900px)" srcset="<%= img.cale_web_mediu %>">
+                        <img src="<%= img.cale_web_mare %>" alt="<%= img.alt || img.titlu %>" title="<%= img.descriere %>">
+                    </picture>
+                    <figcaption>
+                        <strong><%= img.titlu %></strong> - <%= img.descriere %>
+                        <% if (img.licenta) { %>
+                            <br><small class="atribuire">Licență: <%= img.licenta %></small>
+                        <% } %>
+                    </figcaption>
+                </figure>
+            <% }); %>
+        <% } else { %>
+            <p>Nu există imagini pentru acest interval orar.</p>
+        <% } %>
+    </div>
+</section>
